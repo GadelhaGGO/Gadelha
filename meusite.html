@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gadelha Serviços & Cursos</title>
+    <style>
+        /* --- GERAL E FONTES --- */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600;700&display=swap');
+
+        :root {
+            --cor-primaria: #0a0a23;
+            --cor-secundaria: #1b1b32;
+            --cor-terciaria: #3b3b4f;
+            --cor-destaque: #f1be32;
+            --cor-texto: #f5f6f7;
+            --cor-texto-sec: #d0d0d5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--cor-primaria);
+            color: var(--cor-texto);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--cor-destaque);
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--cor-terciaria);
+        }
+
+        /* --- CABEÇALHO E NAVEGAÇÃO --- */
+        header {
+            background-color: var(--cor-secundaria);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: var(--cor-texto);
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--cor-texto);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover, .social-icons a:hover {
+            color: var(--cor-destaque);
+        }
+
+        .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .btn-orcamento {
+            background-color: var(--cor-destaque);
+            color: var(--cor-primaria);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-orcamento:hover {
+            color: var(--cor-primaria);
+            transform: scale(1.05);
+            box-shadow: 0 0 10px var(--cor-destaque);
+        }
+        
+        /* --- SEÇÃO INÍCIO --- */
+        #inicio {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px; /* Para não ficar atrás do header fixo */
+        }
+
+        #inicio h1 {
+            font-size: 3.5rem;
+        }
+
+        #inicio p {
+            font-size: 1.2rem;
+            color: var(--cor-texto-sec);
+            max-width: 600px;
+            margin: 20px auto 30px;
+        }
+
+        /* --- SEÇÃO SERVIÇOS (ACCORDION) --- */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .servico-categoria h3 {
+            font-size: 1.5rem;
+            color: var(--cor-destaque);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--cor-destaque);
+            padding-left: 10px;
+        }
+
+        details {
+            background-color: var(--cor-secundaria);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: 1px solid var(--cor-terciaria);
+        }
+
+        summary {
+            padding: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none; /* Remove a seta padrão */
+            position: relative;
+        }
+        
+        summary::-webkit-details-marker { display: none; } /* Chrome */
+
+        summary::after { /* Cria uma nova seta com CSS */
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+
+        details div {
+            padding: 0 15px 15px 15px;
+            color: var(--cor-texto-sec);
+            line-height: 1.6;
+        }
+        
+        /* --- SEÇÃO CURSOS --- */
+        .cursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .curso-card {
+            background-color: var(--cor-secundaria);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--cor-terciaria);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .curso-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            background-color: var(--cor-destaque);
+        }
+
+        .curso-info {
+            padding: 20px;
+        }
+
+        .curso-info h3 {
+            color: var(--cor-texto);
+            margin-bottom: 10px;
+        }
+
+        .curso-info p {
+            color: var(--cor-texto-sec);
+            font-size: 0.9rem;
+        }
+
+        /* --- SEÇÃO CURSOS PDF --- */
+        .pdf-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .pdf-table th, .pdf-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--cor-terciaria);
+        }
+
+        .pdf-table th {
+            font-family: 'Poppins', sans-serif;
+            color: var(--cor-destaque);
+            font-size: 1.1rem;
+        }
+
+        .pdf-table td {
+            color: var(--cor-texto-sec);
+        }
+        
+        .pdf-table .valor {
+            font-weight: 700;
+            color: var(--cor-texto);
+            text-align: center;
+        }
+        
+        .pdf-table .link-download {
+            text-align: center;
+        }
+
+        .btn-download {
+            background-color: var(--cor-destaque);
+            color: var(--cor-primaria);
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* --- SEÇÃO GIBI --- */
+        #gibi .container {
+            text-align: center;
+        }
+
+        #gibi p {
+            margin-bottom: 30px;
+            color: var(--cor-texto-sec);
+        }
+
+        .game-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            background-color: var(--cor-secundaria);
+            border: 2px dashed var(--cor-terciaria);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        /* --- RODAPÉ --- */
+        footer {
+            background-color: var(--cor-secundaria);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 2px solid var(--cor-destaque);
+        }
+
+        footer .social-icons {
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: var(--cor-texto-sec);
+            font-size: 0.9rem;
+        }
+        
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Em um site real, aqui entraria um menu hamburguer */
+            }
+            #inicio h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="container">
+            <a href="#inicio" class="logo">Gadelha®</a>
+            <ul>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#cursos">Cursos</a></li>
+                <li><a href="#cursos-pdf">Cursos em PDF</a></li>
+                <li><a href="#gibi">Gibi</a></li>
+            </ul>
+            <div class="social-icons">
+                 <a href="https://instagram.com/seu_usuario_instagram" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                </a>
+                <a href="https://wa.me/55119XXXXXXXX?text=Olá! Gostaria de um orçamento." target="_blank" class="btn-orcamento">Orçamento</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <div class="container">
+                <h1>Soluções Inteligentes e Capacitação Sob Medida.</h1>
+                <p>Do desenvolvimento de um projeto à sua capacitação para fazê-lo. Faço ou ensino, o cliente escolhe.</p>
+                <a href="#servicos" class="btn-orcamento">Conheça os Serviços</a>
+            </div>
+        </section>
+
+        <section id="servicos">
+            <div class="container">
+                <h2>Serviços</h2>
+                <div class="servicos-grid">
+                    <div class="servico-categoria">
+                        <h3>Tecnologia e Conteúdo</h3>
+                        <details>
+                            <summary>Desenvolvimento Web</summary>
+                            <div>Criação de sites institucionais, landing pages e pequenas aplicações utilizando HTML, JavaScript e Python. Soluções rápidas e funcionais para sua presença online.</div>
+                        </details>
+                        <details>
+                            <summary>Automação e Planilhas</summary>
+                            <div>Otimize seu tempo com planilhas em Excel e Forms Avançado, dashboards, automação de relatórios e integração com ferramentas de IA para análise de dados.</div>
+                        </details>
+                        <details>
+                            <summary>Produção e Edição de fotos e Vídeos</summary>
+                            <div>Edição de fotos e vídeos para redes sociais, cursos online e conteúdo institucional. Transformo suas ideias em fotos e vídeos dinâmicos e profissionais.</div>
+                        </details>
+                    </div>
+                    <div class="servico-categoria">
+                        <h3>Gestão e Segurança</h3>
+                        <details>
+                            <summary>Consultoria em Gestão de Pessoas</summary>
+                            <div>Análise e estruturação de pequenas equipes, planos de desenvolvimento e otimização de processos de RH para pequenos negócios.</div>
+                        </details>
+                        <details>
+                            <summary>Planejamento de Segurança</summary>
+                            <div>Desenvolvimento de planos de gestão de segurança para pequenos eventos, comércios ou condomínios, baseado em análise de risco.</div>
+                        </details>
+                         <details>
+                            <summary>Adequação a Normas (NRs)</summary>
+                            <div>Consultoria e treinamento preparatório para equipes sobre diretrizes das normas NR10, NR11 e NR35, focando na prevenção de acidentes.</div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="cursos">
+            <div class="container">
+                <h2>Cursos</h2>
+                <div class="cursos-grid">
+                    <div class="curso-card">
+                        <div class="curso-info">
+                            <h3>Programação</h3>
+                            <p>Aprenda a automatizar tarefas e analisar dados do zero, mesmo que você nunca tenha escrito uma linha de código.</p>
+                        </div>
+                    </div>
+                    <div class="curso-card">
+                        <div class="curso-info">
+                            <h3>Excel e Formularios para Negócios</h3>
+                            <p>Domine tabelas dinâmicas, dashboards. Transforme dados brutos em decisões estratégicas.</p>
+                        </div>
+                    </div>
+                    <div class="curso-card">
+                        <div class="curso-info">
+                            <h3>Workshop: Liderança e Gestão</h3>
+                            <p>Desenvolva habilidades de comunicação, feedback e motivação para formar equipes de alta performance.</p>
+                        </div>
+                    </div>
+                     <div class="curso-card">
+                        <div class="curso-info">
+                            <h3>Bootcamp: Segurança no Trabalho</h3>
+                            <p>Um intensivo sobre as principais NRs e os conceitos de Bombeiro Civil, focado na aplicação prática e gestão de riscos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cursos-pdf">
+            <div class="container">
+                <h2>Cursos em PDF</h2>
+                <table class="pdf-table">
+                    <thead>
+                        <tr>
+                            <th>Nome do Curso</th>
+                            <th style="text-align: center;">Valor</th>
+                            <th style="text-align: center;">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Guia Essencial de Funções do Excel</td>
+                            <td class="valor">R$ 29,90</td>
+                            <td class="link-download"><a href="#" class="btn-download">Baixar</a></td>
+                        </tr>
+                        <tr>
+                            <td>5 Passos para seu Plano de Segurança</td>
+                            <td class="valor">R$ 39,90</td>
+                            <td class="link-download"><a href="#" class="btn-download">Baixar</a></td>
+                        </tr>
+                        <tr>
+                            <td>Curso Jogador Caro</td>
+                            <td class="valor">R$ 29,90</td>
+                            <td class="link-download"><a href="#" class="btn-download">Baixar</a></td>
+                        </tr>
+                         <tr>
+                            <td><strong>Combo: Todos os 3 Cursos em PDF</strong></td>
+                            <td class="valor"><strong>R$ 79,90</strong></td>
+                            <td class="https://drive.google.com/file/d/1-VHsxrvKjd3nMyxSF7lkiPpkS_wmj95K/view?usp=drivesdk"><a href="#" class="btn-download">Baixar Combo</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="gibi">
+            <div class="container">
+                <h2>Pausa para Descontrair!</h2>
+                <p>Nem só de trabalho e estudo vive a mente.</p>
+                <div class="game-placeholder">
+                    <p>Seu jogo em HTML5/JS seria inserido aqui.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="social-icons">
+                 <a href="https://instagram.com/seu_usuario_instagram" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+                </a>
+            </div>
+            <p>"Faço ou ensino, o cliente escolhe."</p>
+            <p>© Gadelha Serviços & Cursos. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
