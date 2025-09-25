@@ -288,18 +288,28 @@
             color: var(--cor-texto-sec);
         }
 
-        .game-placeholder {
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            background-color: var(--cor-secundaria);
-            border: 2px dashed var(--cor-terciaria);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
+        /* --- ESTILO ADICIONADO PARA O BOTÃO MERCADO PAGO --- */
+        .btn-pagamento-mp {
+            background-color: #009ee3; /* Cor oficial do Mercado Pago */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            display: inline-block;
+            margin-top: 20px; /* Espaçamento */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
         }
+
+        .btn-pagamento-mp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #009ee3;
+        }
+
 
         /* --- RODAPÉ --- */
         footer {
@@ -415,7 +425,7 @@
                             <summary>Serviços Domesticos</summary>
                             <div>Limpeza, organização, pintura, instalação de telas, montagem de móveis e serviços elétricos básicos.
 Tudo para manter seu lar bem cuidado e funcional.</div>
-                        </details>
+                        </e-details>
                     </div>
                 </div>
             </div>
@@ -495,15 +505,23 @@ Tudo para manter seu lar bem cuidado e funcional.</div>
                 <h2>Preço justo</h2>
                 <p>Prazer em ensinar</p>
                 
-            </div>
+                <a href="https://link.mercadopago.com.br/gadelhaservicos" target="_blank" class="btn-pagamento-mp">
+                    Pagar com Mercado Pago
+                </a>
+                </div>
         </section>
     </main>
     
     <footer>
         <div class="container">
             <div class="social-icons">
-                    <img src="https://cdn-icons-png.flaticon.com/512/12950/12950399.png" alt="Instagram">
+                 <a href="https://www.instagram.com/ogadelha?igsh=dmJpYjB0dTdnMm9y" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
                 </a>
+                
+      <a href="https://www.linkedin.com/in/genilson-gadelha-de-oliveira-1a08b886?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn">
+      </a>
             </div>
             <p>"Faço ou ensino, o cliente escolhe."</p>
             <p>© Gadelha Serviços & Cursos. Todos os direitos reservados.</p>
@@ -511,4 +529,4 @@ Tudo para manter seu lar bem cuidado e funcional.</div>
     </footer>
 
 </body>
-</html>
+    </html>
